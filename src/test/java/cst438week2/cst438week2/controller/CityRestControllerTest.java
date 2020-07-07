@@ -13,6 +13,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +44,8 @@ public class CityRestControllerTest {
 	@Test
 	public void getCityInfo() throws Exception {
 		City city = new City(1,"TestCity","TST","DistrictTest",10000);
+		//List<City> cities = new ArrayList<City>();
+		//cities.add(city);
 		CityInfo expected = new CityInfo(city,"TestCountry", 1, "2");
 		given(cityService.getCityInfo("TestCity")).willReturn(new CityInfo(city,"TestCountry", 1, "2"));
 		CityInfo result = cityService.getCityInfo("TestCity");

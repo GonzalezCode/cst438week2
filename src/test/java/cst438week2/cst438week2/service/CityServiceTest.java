@@ -69,11 +69,23 @@ public class CityServiceTest {
 
 		assertEquals(cityService.getCityInfo(city.getName()), null);
 	}
-	
+	//public CityInfo(City city, String countryName, double temp, String time)
 	@Test
 	public void  testCityMultiple() {
-		// TODO 
-		
+		int temp = 1;
+		City city = new City(1,"TestCity","TST","DistrictTest",10000);
+		City city2 = new City(2,"TestCity","TST2","DistrictTest2",10000);
+		CityInfo expected = new CityInfo(city, "TestCountry", temp,"2");
+		expected.setTemp((temp - 273.15) * 9.0/5.0 + 32.0);
+		List<City> cities = new ArrayList<City>();
+		cities.add(city);
+		cities.add(city2);
+
+		given(cityRepository.findByName("TestCity")).willReturn(cities);
+		given(countryRepository.findByCode("TST")).willReturn(new Country("TST","TestCountry"));
+		given(weatherService.getTempAndTime("TestCity")).willReturn(new TempAndTime(1, 2, 3));
+
+		assertEquals(expected, cityService.getCityInfo("TestCity"));
 	}
 
 }
