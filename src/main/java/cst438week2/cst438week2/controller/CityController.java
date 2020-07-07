@@ -17,10 +17,15 @@ public class CityController {
 	@GetMapping("/cities/{city}")
 	public String getWeather(@PathVariable("city") String cityName, Model model) {
 
-		// TODO Your code goes here
-		// TODO delete the following line
-		model.addAttribute("city",cityService.getCityInfo(cityName));
-		return "city";
+		CityInfo searchedCity = cityService.getCityInfo(cityName);
+
+		if (searchedCity == null) {
+			return "city_not_found";
+		}
+		else {
+			model.addAttribute("cityInfo", searchedCity);
+			return "city_show";
+		}
 	} 
 	
 }

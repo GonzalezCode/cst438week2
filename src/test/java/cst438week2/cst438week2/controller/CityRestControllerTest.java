@@ -12,6 +12,11 @@ import org.springframework.boot.test.json.JacksonTester;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.mockito.BDDMockito.given;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(CityRestController.class)
@@ -37,8 +42,11 @@ public class CityRestControllerTest {
 
 	@Test
 	public void getCityInfo() throws Exception {
-		
-		// TODO your code goes here
+		City city = new City(1,"TestCity","TST","DistrictTest",10000);
+		CityInfo expected = new CityInfo(city,"TestCountry", 1, "2");
+		given(cityService.getCityInfo("TestCity")).willReturn(new CityInfo(city,"TestCountry", 1, "2"));
+		CityInfo result = cityService.getCityInfo("TestCity");
+		assertEquals(expected, result);
 	}
 
 }

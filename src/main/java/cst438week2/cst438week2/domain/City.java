@@ -10,7 +10,7 @@ public class City {
 	@Id
 	private long id;
 	private String name;
-	@Column(name="CountryCode")
+	@Column(name="countrycode")
 	private String countryCode;
 	private String district;
 	private int population;

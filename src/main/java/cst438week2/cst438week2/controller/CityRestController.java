@@ -15,7 +15,6 @@ public class CityRestController {
 	
 	@GetMapping("/api/cities/{city}")
 	public CityInfo getWeather(@PathVariable("city") String cityName) {
-		// TODO your code goes here
 
 		return cityService.getCityInfo(cityName);
 	}
