@@ -10,6 +10,10 @@ public class CityInfo {
 	 int population;
 	 double temp;
 	 String time;
+
+	 //default constructor
+	 public CityInfo() {
+	 }
 	 
 	 public CityInfo(City city, String countryName, double temp, String time) {
 		 this.id = city.getId();
